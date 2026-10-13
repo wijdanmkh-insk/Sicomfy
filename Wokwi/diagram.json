@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "author": "AND here it goes",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": 22.34,
+      "left": 269.03,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    { "type": "wokwi-servo", "id": "servo1", "top": 122.8, "left": 192, "attrs": {} },
+    { "type": "wokwi-hc-sr04", "id": "ultrasonic1", "top": -123.3, "left": 149.5, "attrs": {} },
+    { "type": "wokwi-vcc", "id": "vcc1", "top": 87.16, "left": 134.4, "attrs": {} },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -16.8,
+      "left": -103.8,
+      "attrs": { "volume": "0.1" }
+    },
+    { "type": "wokwi-rgb-led", "id": "rgb1", "top": 71.2, "left": -123.7, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -172.5, "left": -53.4, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "oled1:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "ultrasonic1:GND", "esp:GND.2", "black", [ "v48", "h-154.8" ] ],
+    [ "servo1:GND", "esp:GND.2", "black", [ "h-19.2", "v-144" ] ],
+    [ "esp:3V3", "oled1:VCC", "red", [ "h-14.21", "v-19.2", "h201.6" ] ],
+    [ "ultrasonic1:VCC", "esp:3V3", "red", [ "v28.8", "h-230.4", "v28.8" ] ],
+    [ "ultrasonic1:TRIG", "esp:22", "green", [ "v0" ] ],
+    [ "ultrasonic1:ECHO", "esp:23", "blue", [ "v0" ] ],
+    [ "servo1:PWM", "esp:21", "green", [ "h-28.8", "v-115" ] ],
+    [ "vcc1:VCC", "servo1:V+", "red", [ "v0" ] ],
+    [ "bz1:1", "esp:GND.2", "black", [ "v0", "h-38.4", "v-86.4", "h211.2" ] ],
+    [ "bz1:2", "esp:32", "green", [ "v0" ] ],
+    [ "rgb1:COM", "esp:GND.2", "black", [ "v9.2", "h-47.9", "v-182.4", "h230.4" ] ],
+    [ "rgb1:R", "esp:25", "red", [ "v9.6", "h91.01" ] ],
+    [ "rgb1:G", "esp:26", "green", [ "v9.6", "h101.91" ] ],
+    [ "rgb1:B", "esp:27", "blue", [ "v0" ] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v48", "h48" ] ],
+    [ "dht1:SDA", "esp:VP", "green", [ "v0" ] ],
+    [ "dht1:GND", "esp:GND.2", "black", [ "v9.6", "h115.2" ] ]
+  ],
+  "dependencies": {}
+}
